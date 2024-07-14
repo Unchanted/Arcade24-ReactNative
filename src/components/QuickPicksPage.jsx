@@ -11,13 +11,17 @@ const QuickPicksPage = () => {
           {/* Songs Section */}
           <div>
             <h2 className="text-2xl mb-4">Songs</h2>
-            <div className="flex overflow-x-scroll space-x-4">
-              {/* Example songs, replace with your actual data */}
-              {Array(10).fill(0).map((_, index) => (
-                <div key={index} className="bg-gray-700 p-4 rounded-lg w-40">
-                  <img src="path-to-image.jpg" alt="Song Cover" className="w-full h-40 object-cover rounded-lg mb-2" />
-                  <h3 className="text-lg">Song Title {index + 1}</h3>
-                  <p className="text-gray-400">Artist Name</p>
+            <div className="flex flex-col space-y-4 overflow-x-scroll">
+              {/* Example rows of songs, replace with your actual data */}
+              {Array(3).fill(0).map((_, rowIndex) => (
+                <div key={rowIndex} className="flex space-x-4">
+                  {Array(10).fill(0).map((_, index) => (
+                    <div key={index} className="bg-gray-700 p-4 rounded-lg w-60 h-20 flex flex-col justify-center">
+                      <img src="path-to-image.jpg" alt="Song Cover" className="w-full h-full object-cover rounded-lg mb-2" />
+                      <h3 className="text-lg truncate">Song Title {index + 1}</h3>
+                      <p className="text-gray-400 truncate">Artist Name</p>
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
