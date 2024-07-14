@@ -1,23 +1,55 @@
-
 import React from 'react';
+import Navbar from './Navbar';
 
 const QuickPicksPage = () => {
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-900 text-white px-4 py-6">
-      <h1 className="text-3xl mb-6">Quick Picks</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-        {/* Example items, you can replace these with your actual data */}
-        <div className="bg-gray-800 p-4 rounded-lg">
-          <img src="path-to-image.jpg" alt="Music Cover" className="w-full h-40 object-cover rounded-lg" />
-          <h2 className="mt-2 text-xl">Song Title</h2>
-          <p className="text-gray-400">Artist Name</p>
+    <div className="flex">
+      <Navbar />
+      <div className="flex-1 ml-20 p-4 bg-gray-800 text-white">
+        <h1 className="text-3xl mb-6">Quick Picks</h1>
+        <div className="space-y-12">
+          {/* Songs Section */}
+          <div>
+            <h2 className="text-2xl mb-4">Songs</h2>
+            <div className="flex overflow-x-scroll space-x-4">
+              {/* Example songs, replace with your actual data */}
+              {Array(10).fill(0).map((_, index) => (
+                <div key={index} className="bg-gray-700 p-4 rounded-lg w-40">
+                  <img src="path-to-image.jpg" alt="Song Cover" className="w-full h-40 object-cover rounded-lg mb-2" />
+                  <h3 className="text-lg">Song Title {index + 1}</h3>
+                  <p className="text-gray-400">Artist Name</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Related Albums Section */}
+          <div>
+            <h2 className="text-2xl mb-4">Related Albums</h2>
+            <div className="flex overflow-x-scroll space-x-4">
+              {/* Example albums, replace with your actual data */}
+              {Array(5).fill(0).map((_, index) => (
+                <div key={index} className="bg-gray-700 p-4 rounded-lg w-60">
+                  <img src="path-to-image.jpg" alt="Album Cover" className="w-full h-40 object-cover rounded-lg mb-2" />
+                  <h3 className="text-lg">Album Title {index + 1}</h3>
+                  <p className="text-gray-400">Artist Name</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Favorite Artists Section */}
+          <div>
+            <h2 className="text-2xl mb-4">Favorite Artists</h2>
+            <div className="flex overflow-x-scroll space-x-4">
+              {/* Example artists, replace with your actual data */}
+              {Array(5).fill(0).map((_, index) => (
+                <div key={index} className="bg-gray-700 p-4 rounded-lg w-40">
+                  <img src="path-to-image.jpg" alt="Artist" className="w-full h-40 object-cover rounded-full mb-2" />
+                  <h3 className="text-lg">Artist Name {index + 1}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="bg-gray-800 p-4 rounded-lg">
-          <img src="path-to-image.jpg" alt="Music Cover" className="w-full h-40 object-cover rounded-lg" />
-          <h2 className="mt-2 text-xl">Song Title</h2>
-          <p className="text-gray-400">Artist Name</p>
-        </div>
-        {/* Add more items as needed */}
       </div>
     </div>
   );
