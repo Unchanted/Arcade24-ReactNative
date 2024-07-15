@@ -24,14 +24,11 @@ const QuickPicksPage = () => {
   ];
 
   return (
-    <div className="flex-1 p-4 bg-gray-800 text-white">
+    <div className="content">
       <h1 className="text-3xl mb-6">Quick Picks</h1>
       <div className="space-y-12">
-        {/* Songs Section */}
         <SongList title="Songs" songs={sampleSongs} />
-        {/* Related Albums Section */}
         <SongList title="Related Albums" songs={sampleAlbums} />
-        {/* Favorite Artists Section */}
         <div>
           <h2 className="text-2xl mb-4">Favorite Artists</h2>
           <div className="flex overflow-x-auto space-x-4">

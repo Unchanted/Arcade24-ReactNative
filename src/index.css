@@ -9,3 +9,43 @@ body {
 * {
   @apply box-border;
 }
+
+.navbar {
+  @apply fixed top-0 left-0 h-full bg-gray-900 text-white w-20 flex flex-col items-center py-4 space-y-8;
+}
+
+.nav-link {
+  @apply transform rotate-90 text-center;
+}
+
+.content {
+  @apply flex-1 ml-20 p-4;
+}
+
+.song-list {
+  @apply mb-8;
+}
+
+.song-list-title {
+  @apply text-2xl mb-4;
+}
+
+.song-list-items {
+  @apply flex overflow-x-auto space-x-4;
+}
+
+.song-item {
+  @apply bg-gray-700 p-4 rounded-lg w-40 flex-shrink-0 cursor-pointer;
+}
+
+.song-item img {
+  @apply w-full h-24 object-cover rounded-lg mb-2;
+}
+
+.song-item-title {
+  @apply text-lg truncate;
+}
+
+.song-item-artist {
+  @apply text-gray-400 truncate;
+}
