@@ -1,62 +1,44 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import SongList from './SongList';
 
 const QuickPicksPage = () => {
-  const navigate = useNavigate();
+  const sampleSongs = [
+    { id: 1, title: 'Song 1', artist: 'Artist 1', image: 'path-to-image.jpg' },
+    { id: 2, title: 'Song 2', artist: 'Artist 2', image: 'path-to-image.jpg' },
+    { id: 3, title: 'Song 3', artist: 'Artist 3', image: 'path-to-image.jpg' },
+    // Add more sample songs as needed
+  ];
 
-  const handleSongClick = () => {
-    navigate('/song');
-  };
+  const sampleAlbums = [
+    { id: 1, title: 'Album 1', artist: 'Artist 1', image: 'path-to-image.jpg' },
+    { id: 2, title: 'Album 2', artist: 'Artist 2', image: 'path-to-image.jpg' },
+    { id: 3, title: 'Album 3', artist: 'Artist 3', image: 'path-to-image.jpg' },
+    // Add more sample albums as needed
+  ];
+
+  const sampleArtists = [
+    { id: 1, name: 'Artist 1', image: 'path-to-image.jpg' },
+    { id: 2, name: 'Artist 2', image: 'path-to-image.jpg' },
+    { id: 3, name: 'Artist 3', image: 'path-to-image.jpg' },
+    // Add more sample artists as needed
+  ];
 
   return (
     <div className="flex-1 p-4 bg-gray-800 text-white">
       <h1 className="text-3xl mb-6">Quick Picks</h1>
       <div className="space-y-12">
         {/* Songs Section */}
-        <div>
-          <h2 className="text-2xl mb-4">Songs</h2>
-          <div className="flex flex-col space-y-4 overflow-x-scroll">
-            {/* Example rows of songs, replace with your actual data */}
-            {Array(3).fill(0).map((_, rowIndex) => (
-              <div key={rowIndex} className="flex space-x-4">
-                {Array(10).fill(0).map((_, index) => (
-                  <div
-                    key={index}
-                    className="bg-gray-700 p-4 rounded-lg w-60 h-20 flex flex-col justify-center cursor-pointer"
-                    onClick={handleSongClick}
-                  >
-                    <img src="path-to-image.jpg" alt="Song Cover" className="w-full h-full object-cover rounded-lg mb-2" />
-                    <h3 className="text-lg truncate">Song Title {index + 1}</h3>
-                    <p className="text-gray-400 truncate">Artist Name</p>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+        <SongList title="Songs" songs={sampleSongs} />
         {/* Related Albums Section */}
-        <div>
-          <h2 className="text-2xl mb-4">Related Albums</h2>
-          <div className="flex overflow-x-scroll space-x-4">
-            {/* Example albums, replace with your actual data */}
-            {Array(5).fill(0).map((_, index) => (
-              <div key={index} className="bg-gray-700 p-4 rounded-lg w-60">
-                <img src="path-to-image.jpg" alt="Album Cover" className="w-full h-40 object-cover rounded-lg mb-2" />
-                <h3 className="text-lg">Album Title {index + 1}</h3>
-                <p className="text-gray-400">Artist Name</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <SongList title="Related Albums" songs={sampleAlbums} />
         {/* Favorite Artists Section */}
         <div>
           <h2 className="text-2xl mb-4">Favorite Artists</h2>
-          <div className="flex overflow-x-scroll space-x-4">
-            {/* Example artists, replace with your actual data */}
-            {Array(5).fill(0).map((_, index) => (
-              <div key={index} className="bg-gray-700 p-4 rounded-lg w-40">
-                <img src="path-to-image.jpg" alt="Artist" className="w-full h-40 object-cover rounded-full mb-2" />
-                <h3 className="text-lg">Artist Name {index + 1}</h3>
+          <div className="flex overflow-x-auto space-x-4">
+            {sampleArtists.map((artist, index) => (
+              <div key={index} className="bg-gray-700 p-4 rounded-lg w-40 flex-shrink-0">
+                <img src={artist.image} alt={artist.name} className="w-full h-40 object-cover rounded-full mb-2" />
+                <h3 className="text-lg truncate">{artist.name}</h3>
               </div>
             ))}
           </div>
