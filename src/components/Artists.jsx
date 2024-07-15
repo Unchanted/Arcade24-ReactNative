@@ -18,4 +18,3 @@ const Artists = () => {
 };
 
 export default Artists;
-xport default Albums;

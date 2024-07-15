@@ -2,16 +2,19 @@ import React from 'react';
 
 const SongPage = () => {
   return (
-    <div className="p-4 bg-gray-800 text-white">
-      <h1 className="text-3xl mb-6">Songs</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {Array(20).fill(0).map((_, index) => (
-          <div key={index} className="bg-gray-700 p-4 rounded-lg">
-            <img src="path-to-image.jpg" alt="Song Cover" className="w-full h-40 object-cover rounded-lg mb-2" />
-            <h3 className="text-lg truncate">Song Title {index + 1}</h3>
-            <p className="text-gray-400 truncate">Artist Name</p>
-          </div>
-        ))}
+    <div className="flex-1 p-4 bg-gray-800 text-white flex flex-col items-center">
+      <h1 className="text-3xl mb-6">Song Title</h1>
+      <img src="path-to-image.jpg" alt="Album Art" className="w-64 h-64 object-cover rounded-lg mb-4" />
+      <p className="mb-4 text-center">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <div className="w-full max-w-md">
+        <input type="range" className="w-full mb-4" />
+        <div className="flex justify-between items-center">
+          <button className="text-xl">&#9664;</button> {/* Previous Icon */}
+          <button className="text-3xl">&#9654;</button> {/* Play Icon */}
+          <button className="text-xl">&#9654;&#9654;</button> {/* Next Icon */}
+        </div>
       </div>
     </div>
   );
