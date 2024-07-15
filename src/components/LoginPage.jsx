@@ -1,43 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Redirect to Quick Picks page
+    // Implement your login logic here
     navigate('/quick-picks');
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white px-4">
-      <h1 className="text-3xl mb-6">Log In</h1>
-      <form className="w-full max-w-xs space-y-4" onSubmit={handleSubmit}>
-        <div className="flex flex-col items-start w-full">
-          <label className="text-sm font-bold mb-1" htmlFor="username">Username</label>
-          <input
-            className="w-full bg-transparent border-b-2 border-gray-500 focus:outline-none focus:border-green-500"
-            id="username"
-            type="text"
-            placeholder="Username"
-          />
+    <div className="flex items-center justify-center h-screen bg-gray-800 text-white">
+      <form onSubmit={handleSubmit} className="w-full max-w-xs space-y-4">
+        <div>
+          <label className="block text-sm">Username</label>
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="w-full border-b border-gray-400 bg-transparent focus:outline-none py-2" />
         </div>
-        <div className="flex flex-col items-start w-full">
-          <label className="text-sm font-bold mb-1" htmlFor="password">Password</label>
-          <input
-            className="w-full bg-transparent border-b-2 border-gray-500 focus:outline-none focus:border-green-500"
-            id="password"
-            type="password"
-            placeholder="Password"
-          />
+        <div>
+          <label className="block text-sm">Password</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full border-b border-gray-400 bg-transparent focus:outline-none py-2" />
         </div>
-        <button
-          className="w-full py-2 bg-green-500 text-white font-bold rounded-full mt-4 hover:bg-green-600 transition"
-          type="submit"
-        >
-          Continue
-        </button>
+        <button type="submit" className="w-full bg-green-600 py-2 rounded-full text-white">Continue</button>
       </form>
     </div>
   );
