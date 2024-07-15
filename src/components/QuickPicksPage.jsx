@@ -1,41 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { songs, albums, artists } from '../data/musicDB';
 import SongList from './SongList';
 
 const QuickPicksPage = () => {
-  const sampleSongs = [
-    { id: 1, title: 'Song 1', artist: 'Artist 1', image: 'path-to-image.jpg' },
-    { id: 2, title: 'Song 2', artist: 'Artist 2', image: 'path-to-image.jpg' },
-    { id: 3, title: 'Song 3', artist: 'Artist 3', image: 'path-to-image.jpg' },
-    // Add more sample songs as needed
-  ];
+  const [likedSongs, setLikedSongs] = useState([]);
+  const [likedAlbums, setLikedAlbums] = useState([]);
+  const [likedArtists, setLikedArtists] = useState([]);
 
-  const sampleAlbums = [
-    { id: 1, title: 'Album 1', artist: 'Artist 1', image: 'path-to-image.jpg' },
-    { id: 2, title: 'Album 2', artist: 'Artist 2', image: 'path-to-image.jpg' },
-    { id: 3, title: 'Album 3', artist: 'Artist 3', image: 'path-to-image.jpg' },
-    // Add more sample albums as needed
-  ];
+  const toggleLike = (id, type) => {
+    const setLiked = (likedState, setLikedState) => {
+      setLikedState((prevLiked) =>
+        prevLiked.includes(id) ? prevLiked.filter((item) => item !== id) : [...prevLiked, id]
+      );
+    };
 
-  const sampleArtists = [
-    { id: 1, name: 'Artist 1', image: 'path-to-image.jpg' },
-    { id: 2, name: 'Artist 2', image: 'path-to-image.jpg' },
-    { id: 3, name: 'Artist 3', image: 'path-to-image.jpg' },
-    // Add more sample artists as needed
-  ];
+    if (type === 'song') setLiked(likedSongs, setLikedSongs);
+    if (type === 'album') setLiked(likedAlbums, setLikedAlbums);
+    if (type === 'artist') setLiked(likedArtists, setLikedArtists);
+  };
 
   return (
     <div className="content">
       <h1 className="text-3xl mb-6">Quick Picks</h1>
       <div className="space-y-12">
-        <SongList title="Songs" songs={sampleSongs} />
-        <SongList title="Related Albums" songs={sampleAlbums} />
+        <SongList title="Songs" items={songs} likedItems={likedSongs} toggleLike={(id) => toggleLike(id, 'song')} />
+        <SongList title="Related Albums" items={albums} likedItems={likedAlbums} toggleLike={(id) => toggleLike(id, 'album')} />
         <div>
           <h2 className="text-2xl mb-4">Favorite Artists</h2>
           <div className="flex overflow-x-auto space-x-4">
-            {sampleArtists.map((artist, index) => (
-              <div key={index} className="bg-gray-700 p-4 rounded-lg w-40 flex-shrink-0">
+            {artists.map((artist) => (
+              <div key={artist.id} className="bg-gray-700 p-4 rounded-lg w-40 flex-shrink-0 relative">
                 <img src={artist.image} alt={artist.name} className="w-full h-40 object-cover rounded-full mb-2" />
                 <h3 className="text-lg truncate">{artist.name}</h3>
+                <button
+                  className="absolute top-2 right-2 text-xl"
+                  onClick={() => toggleLike(artist.id, 'artist')}
+                >
+                  {likedArtists.includes(artist.id) ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
+                </button>
               </div>
             ))}
           </div>
