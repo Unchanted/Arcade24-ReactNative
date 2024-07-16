@@ -1,35 +1,33 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa'; // Importing FontAwesome play icon
 
-const SongList = ({ title, items, likedItems, toggleLike }) => {
-  const navigate = useNavigate();
-
-  const handleItemClick = (id) => {
-    navigate(`/song/${id}`);
-  };
+const SongList = () => {
+  // Example data, replace with actual data
+  const songs = [
+    { id: 1, title: 'Song 1', artist: 'Artist 1', imageUrl: 'path-to-image.jpg' },
+    { id: 2, title: 'Song 2', artist: 'Artist 2', imageUrl: 'path-to-image.jpg' },
+    { id: 3, title: 'Song 3', artist: 'Artist 3', imageUrl: 'path-to-image.jpg' },
+    // Add more songs as needed
+  ];
 
   return (
-    <div className="mb-8">
-      <h2 className="text-2xl mb-4">{title}</h2>
-      <div className="flex overflow-x-auto space-x-4">
-        {items.map((item) => (
-          <div
-            key={item.id}
-            className="bg-gray-700 p-4 rounded-lg w-40 flex-shrink-0 cursor-pointer relative"
-          >
-            <img src={item.image} alt={item.title} className="w-full h-24 object-cover rounded-lg mb-2" onClick={() => handleItemClick(item.id)} />
-            <h3 className="text-lg truncate">{item.title}</h3>
-            <p className="text-gray-400 truncate">{item.artist}</p>
-            <button
-              className="absolute top-2 right-2 text-xl"
-              onClick={() => toggleLike(item.id)}
-            >
-              {likedItems.includes(item.id) ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
-            </button>
+    <div className="flex flex-col space-y-4 overflow-x-scroll">
+      {songs.map((song) => (
+        <div key={song.id} className="flex items-center bg-gray-700 p-4 rounded-lg w-60 h-20">
+          <img
+            src={song.imageUrl}
+            alt={`${song.title} Cover`}
+            className="w-16 h-16 object-cover rounded-lg"
+          />
+          <div className="ml-4">
+            <h3 className="text-lg truncate">{song.title}</h3>
+            <p className="text-gray-400 truncate">{song.artist}</p>
           </div>
-        ))}
-      </div>
+          <button className="ml-auto text-green-500 hover:text-green-400">
+            <FaPlay size={20} />
+          </button>
+        </div>
+      ))}
     </div>
   );
 };

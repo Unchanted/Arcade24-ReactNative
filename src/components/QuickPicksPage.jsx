@@ -1,45 +1,45 @@
-import React, { useState } from 'react';
-import { songs, albums, artists } from '../data/musicDB';
+import React from 'react';
+import Navbar from './Navbar';
 import SongList from './SongList';
 
 const QuickPicksPage = () => {
-  const [likedSongs, setLikedSongs] = useState([]);
-  const [likedAlbums, setLikedAlbums] = useState([]);
-  const [likedArtists, setLikedArtists] = useState([]);
-
-  const toggleLike = (id, type) => {
-    const setLiked = (likedState, setLikedState) => {
-      setLikedState((prevLiked) =>
-        prevLiked.includes(id) ? prevLiked.filter((item) => item !== id) : [...prevLiked, id]
-      );
-    };
-
-    if (type === 'song') setLiked(likedSongs, setLikedSongs);
-    if (type === 'album') setLiked(likedAlbums, setLikedAlbums);
-    if (type === 'artist') setLiked(likedArtists, setLikedArtists);
-  };
-
   return (
-    <div className="content">
-      <h1 className="text-3xl mb-6">Quick Picks</h1>
-      <div className="space-y-12">
-        <SongList title="Songs" items={songs} likedItems={likedSongs} toggleLike={(id) => toggleLike(id, 'song')} />
-        <SongList title="Related Albums" items={albums} likedItems={likedAlbums} toggleLike={(id) => toggleLike(id, 'album')} />
-        <div>
-          <h2 className="text-2xl mb-4">Favorite Artists</h2>
-          <div className="flex overflow-x-auto space-x-4">
-            {artists.map((artist) => (
-              <div key={artist.id} className="bg-gray-700 p-4 rounded-lg w-40 flex-shrink-0 relative">
-                <img src={artist.image} alt={artist.name} className="w-full h-40 object-cover rounded-full mb-2" />
-                <h3 className="text-lg truncate">{artist.name}</h3>
-                <button
-                  className="absolute top-2 right-2 text-xl"
-                  onClick={() => toggleLike(artist.id, 'artist')}
-                >
-                  {likedArtists.includes(artist.id) ? <FaHeart className="text-red-500" /> : <FaRegHeart />}
-                </button>
-              </div>
-            ))}
+    <div className="flex">
+      <Navbar />
+      <div className="flex-1 ml-20 p-4 bg-gray-800 text-white">
+        <h1 className="text-3xl mb-6">Quick Picks</h1>
+        <div className="space-y-12">
+          {/* Songs Section */}
+          <div>
+            <h2 className="text-2xl mb-4">Songs</h2>
+            <SongList />
+          </div>
+          {/* Related Albums Section */}
+          <div>
+            <h2 className="text-2xl mb-4">Related Albums</h2>
+            <div className="flex overflow-x-scroll space-x-4">
+              {/* Example albums, replace with your actual data */}
+              {Array(5).fill(0).map((_, index) => (
+                <div key={index} className="bg-gray-700 p-4 rounded-lg w-60">
+                  <img src="path-to-image.jpg" alt="Album Cover" className="w-full h-40 object-cover rounded-lg mb-2" />
+                  <h3 className="text-lg">Album Title {index + 1}</h3>
+                  <p className="text-gray-400">Artist Name</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Favorite Artists Section */}
+          <div>
+            <h2 className="text-2xl mb-4">Favorite Artists</h2>
+            <div className="flex overflow-x-scroll space-x-4">
+              {/* Example artists, replace with your actual data */}
+              {Array(5).fill(0).map((_, index) => (
+                <div key={index} className="bg-gray-700 p-4 rounded-lg w-40">
+                  <img src="path-to-image.jpg" alt="Artist" className="w-full h-40 object-cover rounded-full mb-2" />
+                  <h3 className="text-lg">Artist Name {index + 1}</h3>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
